@@ -9,7 +9,8 @@
         @livewireStyles
     </head>
     <body>
-        @yield('content')
+
+        {{ $slot }}
 
         @livewireScripts
     </body>
