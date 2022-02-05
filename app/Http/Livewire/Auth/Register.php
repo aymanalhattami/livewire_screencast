@@ -12,15 +12,20 @@ class Register extends Component
     public $password = null;
     public $passwordConfirmation = null;
 
+    protected $rules = [
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6|same:passwordConfirmation',
+    ];
+
     public function render()
     {
         return view('livewire.auth.register');
     }
 
-    protected $rules = [
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|same:passwordConfirmation',
-    ];
+    public function updatedEmail($field)
+    {
+        $this->validate(['email' => 'unique:users']);
+    }
 
     public function register()
     {
